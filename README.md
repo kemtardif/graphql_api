@@ -107,7 +107,7 @@ that are needed for the queries. For example, a building type is defined as such
 -The various fields matches those of the entities, except for the last one, which is needed for the queries.
 There is no need to modify the relation between existing entities, since Types are classes in themselves. We just add
 fields that relate them as such. Making the type a function of dbCOntexts allow to query the two databases. This
-is where the two databases connect.
+is where the two databases connect. (or this is where I could've used some kind of "context selector" method to do it)
 
 -Finally, the various queries are defined of an ObjectGraphType called...FactInterventionQuery! For example :
 

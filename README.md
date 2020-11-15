@@ -133,7 +133,7 @@ is where the two databases connect. (or this is where I could've used some kind 
 -This takes an id and spit us back a FactInterventionType. THis type will have fields like "building" into which we can query. Those fields in turn 
 have fields that we can query,etc, allowing to make the desired queries.
 
--For this to work in dotnet, all types,queries and dbContexts must be added to the Dependency Injection (ConfigureServices in Startup.cs, including the namespaces needed to make the queries, 
+-For this to work in dotnet, all types,queries and dbContexts must be added to the Dependency Injection (ConfigureServices in Startup.cs), including the namespaces needed to make the queries, 
 like DependencyResolver and DocumentExecuter :
 
 ```C#

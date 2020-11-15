@@ -29,7 +29,6 @@ namespace GraphQL_API.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseNpgsql("Host=codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com;Database=cindy_okino_warehouse;Username=codeboxx;Password=Codeboxx1!");
             }
         }
@@ -124,6 +123,8 @@ namespace GraphQL_API.Entities
                     .HasColumnType("character varying")
                     .HasColumnName("building_id");
 
+                
+
                 entity.Property(e => e.CommissioningDate)
                     .HasColumnType("date")
                     .HasColumnName("commissioning_date");
@@ -166,6 +167,7 @@ namespace GraphQL_API.Entities
                 entity.Property(e => e.Status)
                     .HasColumnType("character varying")
                     .HasColumnName("status");
+
             });
 
             modelBuilder.Entity<FactQuote>(entity =>

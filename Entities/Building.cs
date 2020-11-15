@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
 
 #nullable disable
 
@@ -12,8 +15,8 @@ namespace GraphQL_API.Entities
             Batteries = new HashSet<Battery>();
             BuildingsDetails = new HashSet<BuildingsDetail>();
         }
-
-        public long Id { get; set; }
+        
+        public long Id { get; set; }                  
         public string AdmContactName { get; set; }
         public string AdmContactMail { get; set; }
         public string AdmContactPhone { get; set; }
@@ -22,10 +25,11 @@ namespace GraphQL_API.Entities
         public string TectContactPhone { get; set; }
         public long? CustomerId { get; set; }
         public long? AddressId { get; set; }
-
         public virtual Address Address { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual ICollection<Battery> Batteries { get; set; }
         public virtual ICollection<BuildingsDetail> BuildingsDetails { get; set; }
+
+
     }
 }

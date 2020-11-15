@@ -157,6 +157,67 @@ like DependencyResolver and DocumentExecuter :
                 options.UseNpgsql(connectionPSQL));
 ```
 
+-The GraphiQL interface allow to easily make queries at localhost:5001/graphql. Here's the three required query :
+
+INTERVENTION QUERY
+
+query {
+  interventionQuery(id:1) {
+    startDateIntervention
+    endDateIntervention
+    building{
+      address{
+        address1
+      }
+    }
+
+  }
+}
+
+BUILDING QUERY
+
+query {
+  buildingQuery(id:5) {
+
+  customer{
+    cpyContactName
+    cpyContactPhone
+    cpyContactEmail
+    cpyDescription
+    staName
+    staPhone
+    staMail
+    }
+    interventions{
+      
+    startDateIntervention
+    endDateIntervention
+    }
+
+
+  }
+}
+
+EMPLOYEE QUERY
+
+
+query {
+  employeeQuery(id:5) {
+    interventions{
+      startDateIntervention
+      endDateIntervention
+      building{        
+        buildingsDetails{
+          infoKey
+          value
+        }
+      }
+    }
+
+
+  }
+}
+
 
 
 

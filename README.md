@@ -159,6 +159,7 @@ like DependencyResolver and DocumentExecuter :
 
 -The GraphiQL interface allow to easily make queries at localhost:5001/graphql. Here's the three required query :
 
+```
 INTERVENTION QUERY
 
 query {
@@ -217,6 +218,7 @@ query {
 
   }
 }
+```
 
 
 

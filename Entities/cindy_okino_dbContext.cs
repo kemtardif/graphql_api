@@ -38,7 +38,7 @@ namespace GraphQL_API.Entities
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder.UseMySql("server=codeboxx.cq6zrczewpu2.us-east-1.rds.amazonaws.com;port=3306;database=cindy_okino_db;uid=codeboxx;password=Codeboxx1!");
+                optionsBuilder.UseMySql("server=codeboxx.cq6zrczewpu2.us-east-1.rds.amazonaws.com;port=3306;database=kemtardifMSQL;uid=codeboxx;password=Codeboxx1!");
             }
         }
 

@@ -54,12 +54,27 @@ namespace GraphQL_API.GraphQL
           var building = _db
             .Buildings
             .Include(x => x.Address)
-            .Include(x => x.Customer)
+            //.Include(x => x.Customer)
             .FirstOrDefault(i => i.Id == id);
 
           return building;
         });
 
+        Field<CustomerType>(
+        "customerQuery",
+
+        arguments: new QueryArguments(
+          new QueryArgument<IdGraphType> { Name = "id"}),
+
+        resolve: context =>
+        {
+          var id = context.GetArgument<long>("id");
+          var customers = _db
+            .Customers
+            .FirstOrDefault(i => i.Id == id);
+
+          return customers;
+        });
 
     }
   }

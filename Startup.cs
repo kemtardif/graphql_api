@@ -51,6 +51,10 @@ namespace GraphQL_API
             services.AddScoped<EmployeeType>();
             services.AddScoped<BuildingsDetailType>();
             services.AddScoped<CustomerType>();
+            services.AddScoped<BatteryType>();
+            services.AddScoped<ColumnType>();
+            services.AddScoped<ElevatorType>();
+
 
             services.AddScoped<FactInterventionQuery>();
 

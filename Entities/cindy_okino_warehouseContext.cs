@@ -29,7 +29,7 @@ namespace GraphQL_API.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Host=codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com;Database=cindy_okino_warehouse;Username=codeboxx;Password=Codeboxx1!");
+                optionsBuilder.UseNpgsql("Host=codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com;Database=kemtardifPSQL;Username=codeboxx;Password=Codeboxx1!");
             }
         }
 

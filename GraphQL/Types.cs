@@ -38,6 +38,37 @@ namespace GraphQL_API.GraphQL
 
     }    
   }
+    //////////////EMPLOYEE TYPE//////////////////////
+
+  public class EmployeeType : ObjectGraphType<Employee>
+  {
+    public EmployeeType(cindy_okino_warehouseContext _db)
+    {
+      Name = "Employee";
+
+      Field(x => x.Id);
+      Field(x => x.FirstName);
+      Field(x => x.LastName);
+      Field<ListGraphType<FactInterventionType>>(
+        "interventions",
+
+        arguments: 
+        new QueryArguments(
+          new QueryArgument<IntGraphType> { Name = "id" }),
+
+        resolve: context => 
+        {
+            var interventions =_db.FactInterventions
+                                .Where(ss => ss.EmployeeId == context.Source.Id)
+                                .ToListAsync();
+
+            return interventions;
+        });
+      
+
+    } 
+  }
+
 
   ///////BUILDING TYPE///////////////////
 
@@ -51,8 +82,21 @@ namespace GraphQL_API.GraphQL
       Field(x => x.AddressId, nullable: true);
       Field(x => x.CustomerId, nullable: true);
       Field(x => x.TectContactPhone);
-      Field(x => x.Address, type: typeof(AddressType));
-      Field(x => x.Customer, type: typeof(CustomerType));
+      //Field(x => x.Address, type: typeof(AddressType));
+      Field<AddressType>(
+        "address",
+
+        arguments: 
+          new QueryArguments(
+            new QueryArgument<IntGraphType> { Name = "id" }),
+
+        resolve: context => 
+        {
+            var address = db.Addresses
+                            .FirstOrDefault(i => i.Id == context.Source.AddressId);
+
+            return address;
+        });
       Field<ListGraphType<FactInterventionType>>(
         "interventions",
 
@@ -68,6 +112,7 @@ namespace GraphQL_API.GraphQL
 
             return interventions;
         });
+
       Field<ListGraphType<BuildingsDetailType>>(
       "buildingsDetails",
 
@@ -111,7 +156,7 @@ namespace GraphQL_API.GraphQL
 
    public class CustomerType : ObjectGraphType<Customer>
   {
-    public CustomerType()
+    public CustomerType(cindy_okino_dbContext _db)
     {
       Name = "Customer";
 
@@ -124,8 +169,70 @@ namespace GraphQL_API.GraphQL
       Field(x => x.StaPhone);
       Field(x => x.StaMail);
 
-      
+      Field<ListGraphType<BuildingType>>(
+        "buildings",
 
+        arguments: 
+          new QueryArguments(
+            new QueryArgument<IntGraphType> { Name = "id" }),
+
+        resolve: context => 
+        {
+            var buildings =_db.Buildings
+                                .Include(_ => _.Batteries)
+                                .Where(ss => ss.CustomerId == context.Source.Id)
+                                .ToListAsync();
+
+            return buildings;
+        });
+        Field<ListGraphType<BatteryType>>(
+        "batteries",
+
+        arguments: 
+            new QueryArguments(
+            new QueryArgument<IntGraphType> { Name = "id" }),
+
+        resolve: context => 
+        {
+            
+            var batteries = _db.Batteries
+                            .Where(_=>_.Building.CustomerId == context.Source.Id)
+                            .ToListAsync();
+
+            return batteries;
+      });
+      Field<ListGraphType<ColumnType>>(
+        "columns",
+
+        arguments: 
+            new QueryArguments(
+            new QueryArgument<IntGraphType> { Name = "id" }),
+
+        resolve: context => 
+        {
+            
+            var columns = _db.Columns
+                            .Where(_=>_.Battery.Building.CustomerId == context.Source.Id)
+                            .ToListAsync();
+
+            return columns;
+      });
+      Field<ListGraphType<ElevatorType>>(
+        "elevators",
+
+        arguments: 
+            new QueryArguments(
+            new QueryArgument<IntGraphType> { Name = "id" }),
+
+        resolve: context => 
+        {
+            
+            var elevators = _db.Elevators
+                            .Where(_=>_.Column.Battery.Building.CustomerId == context.Source.Id)
+                            .ToListAsync();
+
+            return elevators;
+      });
     } 
   }
 
@@ -145,36 +252,102 @@ namespace GraphQL_API.GraphQL
     } 
   }
 
-  //////////////EMPLOYEE TYPE//////////////////////
+  ///BATTERY TYPE ////////////////////
 
-  public class EmployeeType : ObjectGraphType<Employee>
-  {
-    public EmployeeType(cindy_okino_warehouseContext _db)
+  
+    public class BatteryType : ObjectGraphType<Battery>
     {
-      Name = "Employee";
+      public BatteryType(cindy_okino_dbContext _db)
+      {
+        Name = "Battery";
 
-      Field(x => x.Id);
-      Field(x => x.FirstName);
-      Field(x => x.LastName);
-      Field<ListGraphType<FactInterventionType>>(
-        "interventions",
+        Field(x => x.Id);
+        Field(x => x.TypeBuilding);
+        Field(x => x.Status);
+        Field(x => x.BuildingId, nullable: true);
+        Field<CustomerType>(
+          "customer",
 
-        arguments: 
-        new QueryArguments(
-          new QueryArgument<IntGraphType> { Name = "id" }),
+          arguments: 
+            new QueryArguments(
+              new QueryArgument<IntGraphType> { Name = "id" }),
 
-        resolve: context => 
-        {
-            var interventions =_db.FactInterventions
-                                .Where(ss => ss.EmployeeId == context.Source.Id)
-                                .ToListAsync();
+          resolve: context => 
+          {
+              var building = _db.Buildings
+                              .FirstOrDefault(i => i.Id == context.Source.BuildingId);
+              var customer = _db.Customers.FirstOrDefault(i => i.Id == building.CustomerId);
 
-            return interventions;
+              return customer;
         });
-      
+      } 
+    }
 
-    } 
-  }
+    /////COLUMN TYPE /////////////////////
+
+    public class ColumnType : ObjectGraphType<Column>
+    {
+      public ColumnType(cindy_okino_dbContext _db)
+      {
+        Name = "Column";
+
+        Field(x => x.Id);
+        Field(x => x.TypeBuilding);
+        Field(x => x.Status);
+        Field(x => x.BatteryId, nullable: true);
+        Field<CustomerType>(
+          "customer",
+
+          arguments: 
+            new QueryArguments(
+              new QueryArgument<IntGraphType> { Name = "id" }),
+
+          resolve: context => 
+          {
+              var battery = _db.Batteries
+                              .FirstOrDefault(i => i.Id == context.Source.BatteryId);
+              var customer = _db.Customers
+                              .FirstOrDefault(i => i.Id == battery.Building.CustomerId);
+
+              return customer;
+        });
+
+      } 
+    }
+
+     ///// ELEVATOR TYPE ////////////////////
+    public class ElevatorType : ObjectGraphType<Elevator>
+    {
+      public ElevatorType(cindy_okino_dbContext _db)
+      {
+        Name = "Elevator";
+
+        Field(x => x.Id);
+        Field(x => x.SerialNumber);
+        Field(x => x.Model);
+        Field(x => x.ColumnId, nullable: true);
+                Field<CustomerType>(
+          "customer",
+
+          arguments: 
+            new QueryArguments(
+              new QueryArgument<IntGraphType> { Name = "id" }),
+
+          resolve: context => 
+          {
+              var column = _db.Columns
+                              .FirstOrDefault(i => i.Id == context.Source.ColumnId);
+              var customer = _db.Customers
+                              .FirstOrDefault(i => i.Id == column.Battery.Building.CustomerId);
+
+              return customer;
+        });
+
+
+      } 
+    }
+
+
 
 }
 

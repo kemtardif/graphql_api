@@ -37,9 +37,25 @@ namespace GraphQL_API.GraphQL
           var id = context.GetArgument<long>("id");
           var employee = _db
             .Employees
-            .FirstOrDefault(i => i.Id == id);
+            .ToListAsync();
 
           return employee;
+        });
+
+        Field<ListGraphType<EmployeeType>>(
+        "allemployeesQuery",
+
+        //arguments:// new QueryArguments(
+        //  new QueryArgument<IdGraphType> { Name = "id"}),
+
+        resolve: context =>
+        {
+          //var id = context.GetArgument<long>("id");
+          var employees = _db
+            .Employees
+            .ToListAsync();
+
+          return employees;
         });
 
         Field<BuildingType>(
@@ -93,7 +109,7 @@ namespace GraphQL_API.GraphQL
 
           return columns;
         });
-        
+
         Field<ListGraphType<BatteryType>>(
         "batteryQuery",
 

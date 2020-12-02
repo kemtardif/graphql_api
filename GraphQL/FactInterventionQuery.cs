@@ -60,6 +60,57 @@ namespace GraphQL_API.GraphQL
           return building;
         });
 
+        Field<ListGraphType<ElevatorType>>(
+        "elevatorQuery",
+
+        arguments: new QueryArguments(
+          new QueryArgument<IdGraphType> { Name = "id"}),
+
+        resolve: context =>
+        {
+          var id = context.GetArgument<long>("id");
+          var elevators = _db
+            .Elevators
+            .Where(_=>_.ColumnId == id)
+                            .ToListAsync();
+
+          return elevators;
+        });
+
+        Field<ListGraphType<ColumnType>>(
+        "columnQuery",
+
+        arguments: new QueryArguments(
+          new QueryArgument<IdGraphType> { Name = "id"}),
+
+        resolve: context =>
+        {
+          var id = context.GetArgument<long>("id");
+          var columns = _db
+            .Columns
+            .Where(_=>_.BatteryId == id)
+                            .ToListAsync();
+
+          return columns;
+        });
+        
+        Field<ListGraphType<BatteryType>>(
+        "batteryQuery",
+
+        arguments: new QueryArguments(
+          new QueryArgument<IdGraphType> { Name = "id"}),
+
+        resolve: context =>
+        {
+          var id = context.GetArgument<long>("id");
+          var batteries = _db
+            .Batteries
+            .Where(_=>_.BuildingId == id)
+                            .ToListAsync();
+
+          return batteries;
+        });
+
         Field<CustomerType>(
         "customerQuery",
 

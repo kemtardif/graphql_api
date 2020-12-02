@@ -112,6 +112,21 @@ namespace GraphQL_API.GraphQL
 
             return interventions;
         });
+        Field<ListGraphType<BatteryType>>(
+        "batteries",
+
+        arguments: 
+          new QueryArguments(
+            new QueryArgument<IntGraphType> { Name = "id" }),
+
+        resolve: context => 
+        {
+            var batteries = db.Batteries
+                                .Where(ss => ss.BuildingId == context.Source.Id)
+                                .ToListAsync();
+
+            return batteries;
+        });
 
       Field<ListGraphType<BuildingsDetailType>>(
       "buildingsDetails",
@@ -264,6 +279,7 @@ namespace GraphQL_API.GraphQL
         Field(x => x.Id);
         Field(x => x.TypeBuilding);
         Field(x => x.Status);
+        Field(x => x.CertOpe);
         Field(x => x.BuildingId, nullable: true);
         Field<CustomerType>(
           "customer",
@@ -280,6 +296,36 @@ namespace GraphQL_API.GraphQL
 
               return customer;
         });
+      Field<BuildingType>(
+          "building",
+
+          arguments: 
+            new QueryArguments(
+              new QueryArgument<IntGraphType> { Name = "id" }),
+
+          resolve: context => 
+          {
+              var building = _db.Buildings
+                              .FirstOrDefault(i => i.Id == context.Source.BuildingId);
+
+              return building;
+        });
+      Field<ListGraphType<ColumnType>>(
+        "columns",
+
+        arguments: 
+            new QueryArguments(
+            new QueryArgument<IntGraphType> { Name = "id" }),
+
+        resolve: context => 
+        {
+            
+            var columns = _db.Columns
+                            .Where(_=>_.BatteryId == context.Source.Id)
+                            .ToListAsync();
+
+            return columns;
+      });
       } 
     }
 
@@ -311,6 +357,36 @@ namespace GraphQL_API.GraphQL
 
               return customer;
         });
+        Field<BatteryType>(
+          "battery",
+
+          arguments: 
+            new QueryArguments(
+              new QueryArgument<IntGraphType> { Name = "id" }),
+
+          resolve: context => 
+          {
+              var battery = _db.Batteries
+                              .FirstOrDefault(i => i.Id == context.Source.BatteryId);
+
+              return battery;
+        });
+      Field<ListGraphType<ElevatorType>>(
+        "elevators",
+
+        arguments: 
+            new QueryArguments(
+            new QueryArgument<IntGraphType> { Name = "id" }),
+
+        resolve: context => 
+        {
+            
+            var elevators = _db.Elevators
+                            .Where(_=>_.ColumnId == context.Source.Id)
+                            .ToListAsync();
+
+            return elevators;
+      });
 
       } 
     }
@@ -326,7 +402,7 @@ namespace GraphQL_API.GraphQL
         Field(x => x.SerialNumber);
         Field(x => x.Model);
         Field(x => x.ColumnId, nullable: true);
-                Field<CustomerType>(
+        Field<CustomerType>(
           "customer",
 
           arguments: 
@@ -342,7 +418,19 @@ namespace GraphQL_API.GraphQL
 
               return customer;
         });
+        Field<ColumnType>(
+          "column",
+          arguments: 
+            new QueryArguments(
+              new QueryArgument<IntGraphType> { Name = "id" }),
 
+          resolve: context => 
+          {
+              var column = _db.Columns
+                              .FirstOrDefault(i => i.Id == context.Source.ColumnId);
+
+              return column;
+        });
 
       } 
     }

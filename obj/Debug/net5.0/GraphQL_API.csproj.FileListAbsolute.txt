@@ -137,3 +137,13 @@ C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\Microsoft.Extensions.Depende
 C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\System.Reactive.Interfaces.dll
 C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\System.Runtime.InteropServices.WindowsRuntime.dll
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\web.config
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\appsettings.Development.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\appsettings.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\GraphQL_API.deps.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\GraphQL_API.runtimeconfig.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\scriptcs_bin\Debug\net5.0\appsettings.Development.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\scriptcs_bin\Debug\net5.0\appsettings.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\scriptcs_bin\Debug\net5.0\GraphQL_API.deps.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\scriptcs_bin\Debug\net5.0\GraphQL_API.runtimeconfig.dev.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\scriptcs_bin\Debug\net5.0\GraphQL_API.runtimeconfig.json

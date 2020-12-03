@@ -1,4 +1,4 @@
 {
-    "appService.defaultWebAppToDeploy": "/subscriptions/6383efc0-4cc0-4033-ae9d-ed16c620aa72/resourceGroups/appsvc_windows_centralus2/providers/Microsoft.Web/sites/Rocket-Elevators-GraphQL",
-    "appService.deploySubpath": "publish"
+    "appService.deploySubpath": "publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/6383efc0-4cc0-4033-ae9d-ed16c620aa72/resourceGroups/appsvc_windows_centralus2/providers/Microsoft.Web/sites/Rocket-Elevators-GraphQL"
 }

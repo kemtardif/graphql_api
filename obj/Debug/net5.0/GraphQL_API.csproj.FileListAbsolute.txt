@@ -167,3 +167,13 @@ C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\scriptcs_bin
 C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\scriptcs_bin\Debug\net5.0\GraphQL_API.deps.json
 C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\scriptcs_bin\Debug\net5.0\GraphQL_API.runtimeconfig.dev.json
 C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\scriptcs_bin\Debug\net5.0\GraphQL_API.runtimeconfig.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\publish\publish\web.config
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\publish\publish\appsettings.Development.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\publish\publish\appsettings.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\publish\publish\GraphQL_API.deps.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\publish\publish\GraphQL_API.runtimeconfig.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\publish\publish\scriptcs_bin\Debug\net5.0\appsettings.Development.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\publish\publish\scriptcs_bin\Debug\net5.0\appsettings.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\publish\publish\scriptcs_bin\Debug\net5.0\GraphQL_API.deps.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\publish\publish\scriptcs_bin\Debug\net5.0\GraphQL_API.runtimeconfig.dev.json
+C:\Users\tardi\Desktop\GraphQL_API\bin\Debug\net5.0\publish\publish\publish\publish\scriptcs_bin\Debug\net5.0\GraphQL_API.runtimeconfig.json

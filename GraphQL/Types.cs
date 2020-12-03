@@ -269,7 +269,6 @@ namespace GraphQL_API.GraphQL
 
   ///BATTERY TYPE ////////////////////
 
-  
     public class BatteryType : ObjectGraphType<Battery>
     {
       public BatteryType(cindy_okino_dbContext _db)
@@ -279,6 +278,8 @@ namespace GraphQL_API.GraphQL
         Field(x => x.Id);
         Field(x => x.TypeBuilding);
         Field(x => x.Status);
+        Field(x => x.DateCommissioning, nullable: true);
+        Field(x => x.DateLastInspection, nullable: true);
         Field(x => x.CertOpe);
         Field(x => x.BuildingId, nullable: true);
         Field<CustomerType>(
@@ -329,6 +330,8 @@ namespace GraphQL_API.GraphQL
       } 
     }
 
+
+
     /////COLUMN TYPE /////////////////////
 
     public class ColumnType : ObjectGraphType<Column>
@@ -339,7 +342,10 @@ namespace GraphQL_API.GraphQL
 
         Field(x => x.Id);
         Field(x => x.TypeBuilding);
+        Field(x => x.AmountFloorsServed, nullable: true);
         Field(x => x.Status);
+        Field(x => x.Information);
+        Field(x => x.Notes);
         Field(x => x.BatteryId, nullable: true);
         Field<CustomerType>(
           "customer",
@@ -392,6 +398,9 @@ namespace GraphQL_API.GraphQL
     }
 
      ///// ELEVATOR TYPE ////////////////////
+
+
+
     public class ElevatorType : ObjectGraphType<Elevator>
     {
       public ElevatorType(cindy_okino_dbContext _db)
@@ -401,6 +410,11 @@ namespace GraphQL_API.GraphQL
         Field(x => x.Id);
         Field(x => x.SerialNumber);
         Field(x => x.Model);
+        Field(x => x.DateLastInspection, nullable: true);
+        Field(x => x.DateCommissioning, nullable: true);
+        Field(x => x.TypeBuilding);
+        Field(x => x.Status);
+        Field(x => x.CertOpe);
         Field(x => x.ColumnId, nullable: true);
         Field<CustomerType>(
           "customer",

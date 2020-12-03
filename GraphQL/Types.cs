@@ -69,7 +69,6 @@ namespace GraphQL_API.GraphQL
     } 
   }
 
-
   ///////BUILDING TYPE///////////////////
 
   public class BuildingType : ObjectGraphType<Building>
@@ -79,9 +78,14 @@ namespace GraphQL_API.GraphQL
       Name = "Building";
 
       Field(x => x.Id);
+      Field(x => x.TectContactPhone);
+      Field(x => x.TectContactEmail);
+      Field(x => x.TectContactName);
+      Field(x => x.AdmContactPhone);
+      Field(x => x.AdmContactMail);
+      Field(x => x.AdmContactName);
       Field(x => x.AddressId, nullable: true);
       Field(x => x.CustomerId, nullable: true);
-      Field(x => x.TectContactPhone);
       //Field(x => x.Address, type: typeof(AddressType));
       Field<AddressType>(
         "address",
@@ -266,6 +270,7 @@ namespace GraphQL_API.GraphQL
 
     } 
   }
+
 
   ///BATTERY TYPE ////////////////////
 

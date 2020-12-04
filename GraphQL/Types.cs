@@ -3,6 +3,7 @@ using GraphQL.Types;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace GraphQL_API.GraphQL
 {
@@ -86,6 +87,7 @@ namespace GraphQL_API.GraphQL
       Field(x => x.AdmContactName);
       Field(x => x.AddressId, nullable: true);
       Field(x => x.CustomerId, nullable: true);
+
       //Field(x => x.Address, type: typeof(AddressType));
       Field<AddressType>(
         "address",
@@ -119,9 +121,9 @@ namespace GraphQL_API.GraphQL
         Field<ListGraphType<BatteryType>>(
         "batteries",
 
-        arguments: 
-          new QueryArguments(
-            new QueryArgument<IntGraphType> { Name = "id" }),
+        // arguments: 
+        //   new QueryArguments(
+        //     new QueryArgument<IntGraphType> { Name = "id" }),
 
         resolve: context => 
         {
@@ -197,10 +199,11 @@ namespace GraphQL_API.GraphQL
 
         resolve: context => 
         {
-            var buildings =_db.Buildings
-                                .Include(_ => _.Batteries)
-                                .Where(ss => ss.CustomerId == context.Source.Id)
-                                .ToListAsync();
+             var buildings =_db.Buildings
+                                // .Include(_ => _.Batteries)
+                                 .Where(ss => ss.CustomerId == context.Source.Id)
+                                 .ToListAsync();
+
 
             return buildings;
         });

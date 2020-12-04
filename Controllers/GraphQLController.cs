@@ -27,13 +27,7 @@ namespace GraphQL_API.Controllers
         {
             var result = await _executer.ExecuteAsync(_ =>
             {
-                _.Schema = _schema;
-                _.Query = query.Query;
-                _.Inputs = query.Variables;
-                
-            });
-            if(result.Errors?.Count > 0)
-            {
+                _.Schema = _schema; 
                 return BadRequest();
             }
             return Ok(result.Data);
